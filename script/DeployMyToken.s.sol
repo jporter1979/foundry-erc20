@@ -2,13 +2,15 @@
 pragma solidity ^0.8.19;
 
 import {Script} from "forge-std/Script.sol";
-import {OurToken} from "../src/OurToken.sol";
+import {MyToken} from "../src/MyToken.sol";
 
-contract DeployOurToken is Script {
+contract DeployMyToken is Script {
     uint256 public constant INITIAL_SUPPLY = 100 ether;
-    function run() external {
+
+    function run() external returns (MyToken) {
         vm.startBroadcast();
-        new OurToken(INITIAL_SUPPLY);
+        MyToken mt = new MyToken(INITIAL_SUPPLY);
         vm.stopBroadcast();
+        return mt;
     }
 }
